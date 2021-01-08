@@ -1,0 +1,43 @@
+<% layout('layouts/boilerplate')%>
+    <main class="container mt-3">
+        <figure class="text-center">
+            <h1 class="display-3">Customer Management</h1>
+        </figure>
+        <div class="my-5">
+            <a class="btn btn-primary" href="/crud/add">Add</a>
+        </div>
+        <table class="table table-hover" id="customer">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Employee ID</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Last Updated</th>
+                    <th scope="col">CRUD</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% customermanagement.forEach((cust)=>{%> 
+                    <tr>
+                        <td><%= cust.No%> </td>
+                        <td><%= cust.ID%> </td>
+                        <td><%= cust.EmployeeID %> </td>
+                        <td><%= cust.FirstName %> </td>
+                        <td><%= cust.LastName %> </td>
+                        <td><%= cust.email %> </td>
+                        <td><%= cust.status %> </td>
+                        <td><%= cust.updated_at %> </td>
+                        <td>
+                            <a href="/crud/edit/<%=cust.ID %>" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="/crud/delete/<%=cust.ID %>" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                <%})%> 
+            </tbody>
+        </table>
+        
+    

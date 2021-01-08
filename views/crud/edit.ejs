@@ -1,0 +1,56 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="row">
+    <h1 class="text-center">Update Customer</h1>
+    <div class="col-md-6 offset-md-3">
+        <form action="/customerUpdate" method="POST" novalidate class="was-validated">
+            <div class="mb-3">
+                <label class="form-label" for="ID">ID</label>
+                <input class="form-control" type="number" id="ID" name="ID" value="<%= customermanagement.ID %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="EmployeeID">Employee ID</label>
+                <input class="form-control" type="number" id="EmployeeID" name="EmployeeID" value="<%= customermanagement.EmployeeID %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="FirstName">First Name</label>
+                <input class="form-control" type="text" id="FirstName" name="FirstName" value="<%= customermanagement.FirstName %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="LastName">Last Name</label>
+                <input class="form-control" type="text" id="LastName" name="LastName" value="<%= customermanagement.LastName %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control" type="email" id="email" name="email" value="<%= customermanagement.email %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <input class="form-check-input" type="radio" name="status" id="active" value="active" required>
+                <label class="form-check-label" for="active">Active</label>
+            </div>
+            <div class="mb-3">
+                <input class="form-check-input" type="radio" name="status" id="inactive" value="inactive" required>
+                <label class="form-check-label" for="inactive">Inactive</label>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success">Update</button>
+            </div>
+        </form>
+        <a href="/customerManagement">All Customers</a>
+    </div>
+</div>

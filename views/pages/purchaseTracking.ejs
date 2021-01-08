@@ -1,0 +1,44 @@
+<% layout('layouts/boilerplate')%>
+    <main class="container mt-3">
+        <figure class="text-center">
+            <h1 class="display-3">Purchase Tracking</h1>
+        </figure>
+        <div class="my-5">
+            <a class="btn btn-primary" href="/crud/addPurchase">Add</a>
+        </div>
+        <table class="table table-hover" id="purchase">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Inventory ID</th>
+                    <th scope="col">Product ID</th>
+                    <th scope="col">Purchase ID</th>
+                    <th scope="col">Purchase Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Supplier</th>
+                    <th scope="col">Bill Discount</th>
+                    <th scope="col">CRUD</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% purchase.forEach((p)=>{%> 
+                    <tr>
+                        <td><%= p.ID%> </td>
+                        <td><%= p.InventoryID %> </td>
+                        <td><%= p.ProductID %> </td>
+                        <td><%= p.PurchaseID %> </td>
+                        <td><%= p.PurchasePrice %> </td>
+                        <td><%= p.Quantity %> </td>
+                        <td><%= p.Date %> </td>
+                        <td><%= p.Supplier %> </td>
+                        <td><%= p.BillDiscount %> </td>
+                        <td>
+                            <a href="/crud/deletePurchase/<%=p.ID %>" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                <%})%> 
+            </tbody>
+        </table>
+        
+    

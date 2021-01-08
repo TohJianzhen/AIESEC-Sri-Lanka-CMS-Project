@@ -1,0 +1,43 @@
+<% layout('layouts/boilerplate')%>
+    <main class="container mt-3">
+        <figure class="text-center">
+            <h1 class="display-3">Inventory Management</h1>
+        </figure>
+        <div class="my-5">
+            <a class="btn btn-primary" href="/crud/addInventoryM">Add</a>
+        </div>
+        <table class="table table-hover" id="managerInventory">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Inventory ID</th>
+                    <th scope="col">Product ID</th>
+                    <th scope="col">Purchase Price</th>
+                    <th scope="col">Selling Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Last Updated</th>
+                    <th scope="col">CRUD</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% managerinventory.forEach((mi)=>{%> 
+                    <tr>
+                        <td><%= mi.No%> </td>
+                        <td><%= mi.ID%> </td>
+                        <td><%= mi.InventoryID %> </td>
+                        <td><%= mi.ProductID %> </td>
+                        <td><%= mi.PurchasePrice %> </td>
+                        <td><%= mi.SellingPrice %> </td>
+                        <td><%= mi.Quantity %> </td>
+                        <td><%= mi.updated_at %> </td>
+                        <td>
+                            <a href="/crud/editInventoryM/<%=mi.ID %>" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="/crud/deleteInventoryM/<%=mi.ID %>" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                <%})%> 
+            </tbody>
+        </table>
+        
+    

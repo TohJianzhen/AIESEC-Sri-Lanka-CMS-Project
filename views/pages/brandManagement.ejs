@@ -1,0 +1,39 @@
+<% layout('layouts/boilerplate')%>
+    <main class="container mt-3">
+        <figure class="text-center">
+            <h1 class="display-3">Brand & Product Management</h1>
+        </figure>
+        <div class="my-5">
+            <a class="btn btn-primary" href="/crud/addBrand">Add</a>
+        </div>
+        <table class="table table-hover" id="brand">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Brand ID</th>
+                    <th scope="col">Brand Name</th>
+                    <th scope="col">Product ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Last Updated</th>
+                    <th scope="col">CRUD</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% brandmanagement.forEach((Brand)=>{%> 
+                    <tr>
+                        <td><%= Brand.No%> </td>
+                        <td><%= Brand.BrandID%> </td>
+                        <td><%= Brand.BrandName %> </td>
+                        <td><%= Brand.ProductID %> </td>
+                        <td><%= Brand.Name %> </td>
+                        <td><%= Brand.Price %> </td>
+                        <td><%= Brand.updated_at %> </td>
+                        <td>
+                            <a href="/crud/editBrand/<%=Brand.BrandID %>" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="/crud/deleteBrand/<%=Brand.BrandID %>" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                <%})%> 
+            </tbody>
+        </table>

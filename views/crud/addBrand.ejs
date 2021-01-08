@@ -1,0 +1,48 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="row">
+    <h1 class="text-center">New Brand & Product</h1>
+    <div class="col-md-6 offset-md-3">
+        <form action="/brandSave" method="POST" class="was-validated">
+            <div class="mb-3">
+                <label class="form-label" for="BrandID">Brand ID</label>
+                <input class="form-control" type="number" id="BrandID" name="BrandID" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="BrandName">Brand Name</label>
+                <input class="form-control" type="text" id="BrandName" name="BrandName" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="ProductID">Product ID</label>
+                <input class="form-control" type="number" id="ProductID" name="ProductID" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="Name">Name</label>
+                <input class="form-control" type="text" id="Name" name="Name" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="Price">Price</label>
+                <input class="form-control" type="number" min="0.00" step="0.01" id="Price" name="Price" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success">Add Customer</button>
+            </div>
+        </form>
+        <a href="/customerManagement">All Customers</a>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="row">
+    <h1 class="text-center">Update Brand</h1>
+    <div class="col-md-6 offset-md-3">
+        <form action="/brandUpdate" method="POST" novalidate class="was-validated">
+            <div class="mb-3">
+                <label class="form-label" for="BrandID">Brand ID</label>
+                <input class="form-control" type="number" id="BrandID" name="BrandID" value="<%= brandmanagement.BrandID %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="BrandName">Brand Name</label>
+                <input class="form-control" type="text" id="BrandName" name="BrandName" value="<%= brandmanagement.BrandName %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="ProductID">Product ID</label>
+                <input class="form-control" type="number" id="ProductID" name="ProductID" value="<%= brandmanagement.ProductID %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="Name">Name</label>
+                <input class="form-control" type="text" id="Name" name="Name" value="<%= brandmanagement.Name %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="Price">Price</label>
+                <input class="form-control" type="number" min="0.00" step="0.01" id="Price" name="Price" value="<%= brandmanagement.Price %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success">Update</button>
+            </div>
+        </form>
+        <a href="/brandManagement">All Brands</a>
+    </div>
+</div>

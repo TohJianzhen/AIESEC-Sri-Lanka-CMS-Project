@@ -1,0 +1,55 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="row">
+    <h1 class="text-center">Update Inventory</h1>
+    <div class="col-md-6 offset-md-3">
+        <form action="/inventoryMUpdate" method="POST" novalidate class="was-validated">
+            <div class="mb-3">
+                <label class="form-label" for="ID">ID</label>
+                <input class="form-control" type="number" id="ID" name="ID" value="<%= managerinventory.ID %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="InventoryID">Inventory ID</label>
+                <input class="form-control" type="number" id="InventoryID" name="InventoryID" value="<%= managerinventory.InventoryID %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="ProductID">Purchase ID</label>
+                <input class="form-control" type="number" id="ProductID" name="ProductID" value="<%= managerinventory.ProductID %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="PurchasePrice">Purchase Price</label>
+                <input class="form-control" type="number" id="PurchasePrice"  min="0.00" step="0.01" name="PurchasePrice" value="<%= managerinventory.PurchasePrice %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="SellingPrice">Selling Price</label>
+                <input class="form-control" type="number" id="SellingPrice"  min="0.00" step="0.01" name="SellingPrice" value="<%= managerinventory.SellingPrice %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="Quantity">Quantity</label>
+                <input class="form-control" type="number" id="Quantity" name="Quantity" value="<%= managerinventory.Quantity %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success">Update</button>
+            </div>
+        </form>
+        <a href="/managerInventory">All Inventory</a>
+    </div>
+</div>

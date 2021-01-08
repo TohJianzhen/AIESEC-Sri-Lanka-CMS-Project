@@ -1,0 +1,35 @@
+<% layout('layouts/boilerplate')%>
+    <main class="container mt-3">
+        <figure class="text-center">
+            <h1 class="display-3">Inventory Management</h1>
+        </figure>
+        <div class="my-5">
+            <a class="btn btn-primary" href="/crud/addInventoryA">Add</a>
+        </div>
+        <table class="table table-hover" id="adminInventory">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Last Updated</th>
+                    <th scope="col">CRUD</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% admininventory.forEach((ai)=>{%> 
+                    <tr>
+                        <td><%= ai.No%> </td>
+                        <td><%= ai.ID%> </td>
+                        <td><%= ai.Name %> </td>
+                        <td><%= ai.updated_at%> </td>
+                        <td>
+                            <a href="/crud/editInventoryA/<%=ai.ID %>" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="/crud/deleteInventoryA/<%=ai.ID %>" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                <%})%> 
+            </tbody>
+        </table>
+        
+    
