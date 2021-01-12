@@ -1,0 +1,45 @@
+<% layout('layouts/boilerplate')%>
+    <main class="container mt-3">
+        <figure class="text-center">
+            <h1 class="display-3">Sales Tracking</h1>
+        </figure>
+        <div class="my-5">
+            <a class="btn btn-primary" href="/crud/addSales">Add</a>
+        </div>
+        <table class="table table-hover" id="salestracking">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Inventory ID</th>
+                    <th scope="col">Employee ID</th>
+                    <th scope="col">Product ID</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Reason</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Status Changed Date</th>
+                    <th scope="col">CRUD</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% salestracking.forEach((sale)=>{%> 
+                    <tr>
+                        <td><%= sale.ID%> </td>
+                        <td><%= sale.Date%> </td>
+                        <td><%= sale.InventoryID %> </td>
+                        <td><%= sale.EmployeeID %> </td>
+                        <td><%= sale.ProductID %> </td>
+                        <td><%= sale.Quantity %> </td>
+                        <td><%= sale.Reason %> </td>
+                        <td><%= sale.Status %> </td>
+                        <td><%= sale.StatusUpdate %> </td>
+                        <td>
+                            <a href="/crud/editSales/<%=sale.ID %>" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="/crud/deleteSale/<%=sale.ID %>" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                <%})%> 
+            </tbody>
+        </table>
+        
+    

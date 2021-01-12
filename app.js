@@ -1,3 +1,4 @@
+
 const express       = require("express");
 const session       = require("express-session");
 const bodyParser    = require("body-parser");
@@ -208,7 +209,7 @@ app.get('/adminInventory', authRole(0), (req, res)=>{
     let sql = "SELECT * FROM admininventory";
     let query = connection.query(sql, (err, rows)=>{
         if(err) throw err;
-        res.render('admin/admininventory', {
+        res.render('pages/admininventory', {
             admininventory  : rows
         });    
     });
@@ -261,7 +262,7 @@ app.get('/managerInventory', authRole(1), (req, res)=>{
     let sql = "SELECT * FROM managerinventory";
     let query = connection.query(sql, (err, rows)=>{
         if(err) throw err;
-        res.render('manager/managerinventory', {
+        res.render('pages/managerinventory', {
             managerinventory  : rows
         });    
     });
@@ -343,6 +344,204 @@ app.post('/purchaseSave', (req, res)=>{
     });
 });
 
+/****************************************************************************************************************************/ 
+
+app.get('/salesTracking', (req, res)=>{
+    if (req.session.loggedin)
+    {
+        let sql = "SELECT * FROM salestracking";
+        let query = connection.query(sql, (err, rows)=>{
+            if(err) throw err;
+            res.render('pages/salesTracking', {
+                salestracking  : rows
+            });    
+        });
+    }
+});
+
+app.get('/crud/addSales', (req, res)=>{
+    res.render('crud/addSales');
+});
+
+app.post('/SalesSave', (req, res)=>{
+    let data = {ID          : req.body.ID, 
+                InventoryID  : req.body.InventoryID, 
+                EmployeeID  : req.body.EmployeeID, 
+                ProductID   : req.body.ProductID, 
+                Quantity    : req.body.Quantity,
+                Reason       : req.body.Reason,
+                status      : req.body.status};
+    let sql = "INSERT INTO salestracking SET ?";
+    let query = connection.query(sql, data, (err, results)=>{
+        if(err) throw err;
+        res.redirect('/salesTracking');
+    });
+});
+
+app.get('/crud/editSales/:saleID', (req, res)=>{
+    const saleID = parseInt(req.params.saleID);
+    let sql = `SELECT * FROM salestracking where ID=${saleID}`;
+    let query = connection.query(sql, (err, result)=>{
+        if(err) throw err;
+        res.render('crud/editSales', {salestracking: result[0]
+        });
+    });
+});
+
+app.post('/SalesUpdate', (req, res)=>{
+    const saleID = req.body.ID;
+    let sql = "UPDATE salestracking SET ID='"+req.body.ID+"', InventoryID ='"+req.body.InventoryID+"', EmployeeID ='"+req.body.EmployeeID+"', ProductID='"+req.body.ProductID+"', Quantity='"+req.body.Quantity+"', Reason='"+req.body.Reason+"', status='"+req.body.status+"' WHERE ID="+saleID;
+    let query = connection.query(sql, (err, results)=>{
+        if(err) throw err;
+        res.redirect('/salesTracking');
+    });
+});
+
+app.get('/crud/deleteSale/:saleID', (req, res)=>{
+    const saleID = parseInt(req.params.saleID);
+    let sql = `DELETE FROM salestracking where ID=${saleID}`;
+    let query = connection.query(sql, (err, result)=>{
+        if(err) throw err;
+        res.redirect('/salesTracking');
+    });
+});
+
+/****************************************************************************************************************************/ 
+
+app.get('/lostItem', (req, res)=>{
+    if (req.session.loggedin)
+    {
+        let sql = "SELECT * FROM lostitems";
+        let query = connection.query(sql, (err, rows)=>{
+            if(err) throw err;
+            res.render('pages/lostItem', {
+                lostitems  : rows
+            });    
+        });
+    }
+});
+
+app.get('/crud/addLost', (req, res)=>{
+    res.render('crud/addLost');
+});
+
+app.post('/lostSave', (req, res)=>{
+    let data = {ID              : req.body.ID, 
+                InventoryID     : req.body.InventoryID, 
+                ProductID       : req.body.ProductID, 
+                Quantity        : req.body.Quantity,
+                PurchasePrice   : req.body.PurchasePrice};
+    let sql = "INSERT INTO lostitems SET ?";
+    let query = connection.query(sql, data, (err, results)=>{
+        if(err) throw err;
+        res.redirect('/lostItem');
+    });
+});
+
+/****************************************************************************************************************************/ 
+app.get('/reports', (req, res)=>{
+    if (req.session.loggedin) 
+    {
+        res.render('pages/reports');
+    } 
+    else 
+    {
+        res.render('pages/signin');
+    }
+    res.end();
+    
+});
+
+/****************************************************************************************************************************/ 
+
+app.get('/adminUser', authRole(0), (req, res)=>{
+    let sql = "SELECT * FROM users";
+    let query = connection.query(sql, (err, rows)=>{
+        if(err) throw err;
+        res.render('pages/adminUser', {
+            users  : rows
+        });    
+    });
+});
+
+app.get('/crud/addUser', authRole(0), (req, res)=>{
+    res.render('crud/addUser');
+});
+
+app.post('/userSave', (req, res)=>{
+    let data = {ID              : req.body.ID, 
+                InventoryID     : req.body.InventoryID,
+                FirstName       : req.body.FirstName,
+                LastName        : req.body.LastName,
+                Email           : req.body.Email,
+                Role            : req.body.Role,};
+    let sql = "INSERT INTO users SET ?";
+    let query = connection.query(sql, data, (err, results)=>{
+        if(err) throw err;
+        res.redirect('/adminUser');
+    });
+});
+
+app.get('/crud/editUser/:ID', authRole(0), (req, res)=>{
+    const ID = parseInt(req.params.ID);
+    let sql = `SELECT * FROM users where ID=${ID}`;
+    let query = connection.query(sql, (err, result)=>{
+        if(err) throw err;
+        res.render('crud/editUser', {users: result[0]
+        });
+    });
+});
+
+app.post('/userUpdate', (req, res)=>{
+    const userID = parseInt(req.body.ID);
+    let sql = "UPDATE users SET ID='"+req.body.ID+"', InventoryID='"+req.body.InventoryID+"', FirstName='"+req.body.FirstName+"', LastName='"+req.body.LastName+"', Email='"+req.body.Email+"', Role='"+req.body.Role+"' WHERE ID="+userID;
+    let query = connection.query(sql, (err, results)=>{
+        if(err) throw err;
+        res.redirect('/adminUser');
+    });
+});
+
+/****************************************************************************************************************************/ 
+app.get('/managerUser', authRole(0), (req, res)=>{
+    let sql = "SELECT * FROM users";
+    let query = connection.query(sql, (err, rows)=>{
+        if(err) throw err;
+        res.render('pages/managerUser', {
+            users  : rows
+        });    
+    });
+});
+
+app.get('/crud/editUser/:ID', authRole(0), (req, res)=>{
+    const ID = parseInt(req.params.ID);
+    let sql = `SELECT * FROM users where ID=${ID}`;
+    let query = connection.query(sql, (err, result)=>{
+        if(err) throw err;
+        res.render('crud/editUser', {users: result[0]
+        });
+    });
+});
+
+app.post('/userUpdate', (req, res)=>{
+    const userID = parseInt(req.body.ID);
+    let sql = "UPDATE users SET ID='"+req.body.ID+"', InventoryID='"+req.body.InventoryID+"', FirstName='"+req.body.FirstName+"', LastName='"+req.body.LastName+"', Email='"+req.body.Email+"', Role='"+req.body.Role+"' WHERE ID="+userID;
+    let query = connection.query(sql, (err, results)=>{
+        if(err) throw err;
+        res.redirect('/managerUser');
+    });
+});
+/****************************************************************************************************************************/ 
+app.get('/paymentManagement', (req, res)=>{
+    let sql = "SELECT * FROM paymentmanagement";
+    let query = connection.query(sql, (err, rows)=>{
+        if(err) throw err;
+        res.render('pages/paymentManagement', {
+            paymentmanagement  : rows
+        });    
+    });
+});
+
+/****************************************************************************************************************************/ 
 app.listen(4000, ()=>
 {
     console.log("Listening to port 4000");

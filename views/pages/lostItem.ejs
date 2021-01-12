@@ -1,0 +1,34 @@
+<% layout('layouts/boilerplate')%>
+    <main class="container mt-3">
+        <figure class="text-center">
+            <h1 class="display-3">Lost Item Management</h1>
+        </figure>
+        <div class="my-5">
+            <a class="btn btn-primary" href="/crud/addLost">Add</a>
+        </div>
+        <table class="table table-hover" id="lostitems">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Inventory ID</th>
+                    <th scope="col">Product ID</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Purchase Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% lostitems.forEach((lost)=>{%> 
+                    <tr>
+                        <td><%= lost.ID%> </td>
+                        <td><%= lost.Date%> </td>
+                        <td><%= lost.InventoryID %> </td>
+                        <td><%= lost.ProductID %> </td>
+                        <td><%= lost.Quantity %> </td>
+                        <td><%= lost.PurchasePrice %> </td>
+                    </tr>
+                <%})%> 
+            </tbody>
+        </table>
+        
+    

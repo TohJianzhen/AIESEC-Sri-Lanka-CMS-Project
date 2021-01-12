@@ -1,0 +1,71 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="row">
+    <h1 class="text-center">New Sale</h1>
+    <div class="col-md-6 offset-md-3">
+        <form action="/SalesSave" method="POST" class="was-validated">
+            <div class="mb-3">
+                <label class="form-label" for="ID">ID</label>
+                <input class="form-control" type="number" id="ID" name="ID" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="InventoryID">Inventory ID</label>
+                <input class="form-control" type="number" id="InventoryID" name="InventoryID" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="EmployeeID">Employee ID</label>
+                <input class="form-control" type="number" id="EmployeeID" name="EmployeeID" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="ProductID">Product ID</label>
+                <input class="form-control" type="number" id="ProductID" name="ProductID" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="Quantity">Quantity</label>
+                <input class="form-control" type="number" id="Quantity" name="Quantity" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="Reason">Reason</label>
+                <input class="form-control" type="text" id="Reason" name="Reason" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <input class="form-check-input" type="radio" name="status" id="npaid" value="npaid" required>
+                <label class="form-check-label" for="active">Not Paid</label>
+            </div>
+            <div class="mb-3">
+                <input class="form-check-input" type="radio" name="status" id="paid" value="paid" required>
+                <label class="form-check-label" for="inactive">Paid</label>
+            </div>
+            <div class="mb-3">
+                <input class="form-check-input" type="radio" name="status" id="cancelled" value="cancelled" required>
+                <label class="form-check-label" for="active">Cancelled</label>
+            </div>
+            <div class="mb-3">
+                <input class="form-check-input" type="radio" name="status" id="deleted" value="deleted" required>
+                <label class="form-check-label" for="inactive">Deleted</label>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success">Add Sale</button>
+            </div>
+        </form>
+        <a href="/salesTracking">All Sales</a>
+    </div>
+</div>

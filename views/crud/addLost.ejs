@@ -1,0 +1,45 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="row">
+    <h1 class="text-center">New Lost Items</h1>
+    <div class="col-md-6 offset-md-3">
+        <form action="/lostSave" method="POST" class="was-validated">
+            <div class="mb-3">
+                <label class="form-label" for="ID">ID</label>
+                <input class="form-control" type="number" id="ID" name="ID" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="InventoryID">Inventory ID</label>
+                <input class="form-control" type="number" id="InventoryID" name="InventoryID" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="ProductID">Product ID</label>
+                <input class="form-control" type="number" id="ProductID" name="ProductID" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="Quantity">Quantity</label>
+                <input class="form-control" type="number" id="Quantity" name="Quantity" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="PurchasePrice">Purchase Price</label>
+                <input class="form-control" type="number" id="PurchasePrice" name="PurchasePrice" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        </form>
+        <a href="/lostItems">All Lost Items</a>
+    </div>
+</div>
