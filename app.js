@@ -9,6 +9,10 @@ const app           = express();
 const dotenv        = require("dotenv");
 const jwt           = require("jsonwebtoken");
 const bcrypt        = require("bcryptjs");
+var cors            = require("cors");
+
+app.use(cors())
+
 const {authUser, authRole}      = require("./authUser");
 
 dotenv.config({path: './.env'});
@@ -258,7 +262,7 @@ app.get('/crud/deleteInventoryA/:ID', authRole(0), (req, res)=>{
 });
 
 /****************************************************************************************************************************/ 
-app.get('/managerInventory', authRole(1), (req, res)=>{
+app.get('/managerInventory', (req, res)=>{
     let sql = "SELECT * FROM managerinventory";
     let query = connection.query(sql, (err, rows)=>{
         if(err) throw err;
@@ -474,11 +478,20 @@ app.post('/userSave', (req, res)=>{
                 FirstName       : req.body.FirstName,
                 LastName        : req.body.LastName,
                 Email           : req.body.Email,
+                Password        : req.body.Password,
                 Role            : req.body.Role,};
+    
+    let data2 = {Email           : req.body.Email,
+                Password        : req.body.Password,
+                Position            : req.body.Role};
+    let sql2="INSERT INTO login SET ?";
     let sql = "INSERT INTO users SET ?";
     let query = connection.query(sql, data, (err, results)=>{
         if(err) throw err;
+    let query2 = connection.query(sql2, data2, (err2, results2)=>{
+        if(err2) throw err2;
         res.redirect('/adminUser');
+    });
     });
 });
 

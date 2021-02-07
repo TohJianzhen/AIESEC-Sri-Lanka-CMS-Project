@@ -13,7 +13,6 @@ const connection = mysql.createConnection({
 
 function authUser(req, res, next){
     const { Email, Password } = req.body;
-    console.log(Email);
     connection.query('SELECT * FROM login WHERE Email = ? AND Password = ?', [Email, Password], async (error, results, fields)=>
     {
         if(results.length > 0)
@@ -32,15 +31,26 @@ function authUser(req, res, next){
 
 function authRole(role){
     return (req, res, next) =>{
-        const Email = req.params.Email;
-        let position = (`SELECT Position FROM login where Email=${Email}`);
-        if(position !== role)
+        const Email = req.session.Email;
+        connection.query('SELECT Position FROM login where Email= ?', [Email],(error, result)=>
         {
-            console.log(position);
-            res.status(401)
-            return res.send('Not Allowed')
-        }
-        next();
+            if(result[0].Position!== role)
+            {
+                
+                res.status(401)
+                return res.send('Not Allowed')
+    
+            }
+            next();
+        });
+        
+        // if(position !== role)
+        // {
+        //     console.log(position);
+        //     res.status(401)
+        //     return res.send('Not Allowed')
+        // }
+        // next();
     }
 }
 
